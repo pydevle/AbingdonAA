@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abingdon AA Group - Recovery Meetings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c5aa0;
+            --secondary: #1a3a6e;
+            --accent: #4a7bd9;
+            --light: #f8f9fa;
+            --dark: #333;
+            --gray: #6c757d;
+            --border: #dee2e6;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto 1rem;
+        }
+        
+        .header-quote {
+            font-style: italic;
+            margin-top: 1rem;
+            opacity: 0.9;
+            max-width: 700px;
+        }
+        
+        main {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .meeting-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+        }
+        
+        .meeting-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .meeting-times {
+            font-size: 1.3rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .meeting-address {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .meeting-address a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .meeting-address a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .image-item {
+            text-align: center;
+        }
+        
+        .image-item img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .image-caption {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .parking-info {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+        
+        .parking-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-right: 1.5rem;
+        }
+        
+        .color-box {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .green { background-color: #27ae60; }
+        .orange { background-color: #e67e22; }
+        .yellow { background-color: #f1c40f; }
+        
+        .anonymity-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+        }
+        
+        .tradition-quote {
+            font-style: italic;
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background-color: var(--light);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        /* Contact Form Styles */
+        .contact-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+        }
+        
+        .form-note {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 0.25rem;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .form-disclaimer {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: rgba(44, 90, 160, 0.05);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--gray);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .resources-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .resource-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background-color: var(--light);
+            border-radius: 6px;
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--dark);
+        }
+        
+        .resource-item:hover {
+            background-color: #e2e6ea;
+            transform: translateY(-3px);
+        }
+        
+        .resource-item i {
+            font-size: 1.8rem;
+            margin-right: 15px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.8);
+        }
+        
+        .resource-item-big-book i { color: #c0392b; background: rgba(192, 57, 43, 0.1); }
+        .resource-item-steps i { color: #16a085; background: rgba(22, 160, 133, 0.1); }
+        .resource-item-grapevine i { color: #f39c12; background: rgba(243, 156, 18, 0.1); }
+        .resource-item-app i { color: #2c3e50; background: rgba(44, 62, 80, 0.1); }
+        
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .serenity-prayer {
+            font-style: italic;
+            margin: 1rem 0 2rem;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 2rem;
+            }
+            
+            .header-content {
+                padding: 0 15px;
+            }
+            
+            .parking-legend {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo">
+                        <span style="color: var(--primary); font-weight: bold; font-size: 1.8rem;">AA</span>
+                    </div>
+                    <h1 class="logo-text">Abingdon AA Group</h1>
+                </div>
+                <p class="tagline">Supporting recovery through fellowship, unity, and service</p>
+                <p class="header-quote">"The only requirement for membership is a desire to stop drinking."</p>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <!-- Meeting Information Section -->
+        <div class="meeting-section">
+            <h2 class="section-title">Meeting Information</h2>
+            <div class="meeting-info">
+                <div class="meeting-times">
+                    <i class="far fa-calendar-alt"></i> Tuesdays, Thursdays & Saturdays at 7:00 PM
+                </div>
+                <div class="meeting-address">
+                    <i class="fas fa-map-marker-alt"></i> 
+                    <a href="https://maps.google.com/?q=136+E+Main+St,+Abingdon,+VA+24210" target="_blank">
+                        Sinking Spring Presbyterian Church<br>
+                        136 E Main St, Abingdon, VA 24210
+                    </a>
+                </div>
+            </div>
+            
+            <div class="image-gallery">
+                <div class="image-item">
+                    <img src="sinkingSprings.png" alt="Sinking Springs Presbyterian Church">
+                    <div class="image-caption">Sinking Spring Presbyterian Church</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="parking.png" alt="Parking Information">
+                    <div class="image-caption">Parking Map</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="entrance.jpg" alt="Basement Entrance">
+                    <div class="image-caption">Basement Entrance</div>
+                </div>
+            </div>
+            
+            <div class="parking-info">
+                <h3><i class="fas fa-car"></i> Parking Information</h3>
+                <p>Parking is available in the following areas:</p>
+                <div class="parking-legend">
+                    <div class="legend-item">
+                        <div class="color-box green"></div>
+                        <span>Main Parking Area</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box orange"></div>
+                        <span>Overflow Parking (across the street)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box yellow"></div>
+                        <span>Path to Basement Entrance</span>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem;">The yellow line indicates the path to the basement stairs and entrance. The orange area, across the street from the church, is overflow parking.</p>
+            </div>
+        </div>
+        
+        <!-- Anonymity Section -->
+        <div class="anonymity-section">
+            <h2 class="section-title">Our Tradition of Anonymity</h2>
+            <p>At the heart of our fellowship is a deep respect for personal privacy and humility. This is expressed through our 12th Tradition:</p>
+            
+            <div class="tradition-quote">
+                "Anonymity is the spiritual foundation of all our traditions, ever reminding us to place principles before personalities."
+            </div>
+            
+            <p>This tradition not only protects the privacy of our members but serves as a constant reminder to value our shared principles and group conscience above individual wills and desires. In our meetings, what you share stays in the meeting, and we respect each person's journey without judgment.</p>
+        </div>
+        
+        <!-- Contact Form Section -->
+        <div class="contact-section">
+            <h2 class="section-title">Contact the Group</h2>
+            <div class="contact-form">
+                <form action="https://formspree.io/f/mwpdrnnq" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name or First Name (Optional):</label>
+                        <input type="text" id="name" name="name" placeholder="How should we call you?">
+                        <p class="form-note">Your name helps us address you personally, but you can remain anonymous if you prefer.</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Your Phone Number (If you'd like a call back):</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Best number to reach you">
+                        <p class="form-note">Important if you're in rehab or don't have regular email access.</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message:</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Please share why you're reaching out, if you'd like us to call or visit, meeting information, or any questions you have..." required></textarea>
+                    </div>
+                    
+                    <!-- Hidden field to help identify the source -->
+                    <input type="hidden" name="_subject" value="New Contact from AA Group Website">
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+                
+                <div class="form-disclaimer">
+                    <p><strong>Please note:</strong> This form does not send to a public email list. It goes directly to a trusted group member who will respond confidentially. Your anonymity is protected.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Official AA Resources -->
+        <div class="resources-section">
+            <h2 class="section-title">Official AA Resources</h2>
+            <div class="resources-grid">
+                <a href="https://www.aa.org/the-big-book" class="resource-item resource-item-big-book" target="_blank">
+                    <i class="fas fa-book-open"></i>
+                    <div>
+                        <h4>The Big Book</h4>
+                        <p>AA's basic text</p>
+                    </div>
+                </a>
+                
+                <a href="https://www.aa.org/twelve-steps-twelve-traditions" class="resource-item resource-item-steps" target="_blank">
+                    <i class="fas fa-list-ol"></i>
+                    <div>
+                        <h4>12 Steps & 12 Traditions</h4>
+                        <p>AA's guiding principles</p>
+                    </div>
+                </a>
+                
+                <a href="https://www.aagrapevine.org/" class="resource-item resource-item-grapevine" target="_blank">
+                    <i class="fas fa-newspaper"></i>
+                    <div>
+                        <h4>AA Grapevine</h4>
+                        <p>International journal</p>
+                    </div>
+                </a>
+                
+                <a href="https://www.aa.org/meeting-guide-app" class="resource-item resource-item-app" target="_blank">
+                    <i class="fas fa-mobile-alt"></i>
+                    <div>
+                        <h4>Meeting Guide App</h4>
+                        <p>Find meetings anywhere</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="serenity-prayer">
+                "God, grant me the serenity to accept the things I cannot change, Courage to change the things I can, And wisdom to know the difference."
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 Abingdon AA Group. All rights reserved.</p>
+                <p>Alcoholics Anonymous is a fellowship of people who share their experience, strength and hope with each other.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
